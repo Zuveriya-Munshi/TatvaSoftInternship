@@ -34,7 +34,6 @@ ALTER TABLE customer DROP COLUMN active;
 SELECT * from customer
 
 
-
 -- Rename Existing Column
 ALTER TABLE customer RENAME COLUMN email TO email_address;
 
