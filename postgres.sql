@@ -70,6 +70,28 @@ Select * from orders
 Delete from orders where customer_id = 2
 
 
+SELECT * from orders
+where customer_id IN (select customer_id from customer where active = true)
+
+
+SELECT
+    customer_id,
+	first_name,
+	last_name,
+	email
+FROM
+	customer
+WHERE
+	EXISTS (
+		SELECT
+			1
+		FROM
+			orders
+		WHERE
+			orders.customer_id = customer.customer_id
+	);
+
+
 -- Task 1
 Select * from customer order by first_name ASC , last_name DESC
 
