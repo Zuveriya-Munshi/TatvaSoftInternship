@@ -1,0 +1,9 @@
+C:\Users\pca242\source\repos\Books\Books.Models\obj\Debug\net8.0\Books.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pca242\source\repos\Books\Books.Models\obj\Debug\net8.0\Books.Models.AssemblyInfoInputs.cache
+C:\Users\pca242\source\repos\Books\Books.Models\obj\Debug\net8.0\Books.Models.AssemblyInfo.cs
+C:\Users\pca242\source\repos\Books\Books.Models\obj\Debug\net8.0\Books.Models.csproj.CoreCompileInputs.cache
+E:\Internship\Day 3 .NET\Books.Models\obj\Debug\net8.0\Books.Models.GeneratedMSBuildEditorConfig.editorconfig
+E:\Internship\Day 3 .NET\Books.Models\obj\Debug\net8.0\Books.Models.AssemblyInfoInputs.cache
+E:\Internship\Day 3 .NET\Books.Models\obj\Debug\net8.0\Books.Models.AssemblyInfo.cs
+E:\Internship\Day 3 .NET\Books.Models\obj\Debug\net8.0\Books.Models.csproj.CoreCompileInputs.cache
+E:\Internship\Day 3 .NET\Books.Models\obj\Debug\net8.0\Books.Models.sourcelink.json
