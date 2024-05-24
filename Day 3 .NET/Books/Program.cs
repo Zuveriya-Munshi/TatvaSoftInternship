@@ -27,7 +27,7 @@ namespace Books
                 app.UseSwaggerUI();
             }
 
-            //app.UseAuthorization();
+            app.UseAuthorization();
 
 
             app.MapControllers();

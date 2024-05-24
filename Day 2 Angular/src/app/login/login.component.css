@@ -81,4 +81,5 @@ h3 {
 
 .text-center a:hover {
   text-decoration: underline;
+  background-color: #fff;
 }
