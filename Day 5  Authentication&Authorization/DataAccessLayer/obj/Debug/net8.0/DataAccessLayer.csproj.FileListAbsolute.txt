@@ -1,0 +1,58 @@
+C:\Users\pca242\source\repos\Books\DataAccessLayer\bin\Debug\net8.0\DataAccessLayer.deps.json
+C:\Users\pca242\source\repos\Books\DataAccessLayer\bin\Debug\net8.0\DataAccessLayer.dll
+C:\Users\pca242\source\repos\Books\DataAccessLayer\bin\Debug\net8.0\DataAccessLayer.pdb
+C:\Users\pca242\source\repos\Books\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pca242\source\repos\Books\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.AssemblyInfoInputs.cache
+C:\Users\pca242\source\repos\Books\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.AssemblyInfo.cs
+C:\Users\pca242\source\repos\Books\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Users\pca242\source\repos\Books\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.dll
+C:\Users\pca242\source\repos\Books\DataAccessLayer\obj\Debug\net8.0\refint\DataAccessLayer.dll
+C:\Users\pca242\source\repos\Books\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.pdb
+C:\Users\pca242\source\repos\Books\DataAccessLayer\obj\Debug\net8.0\ref\DataAccessLayer.dll
+C:\Users\pca242\source\repos\Day5\Start\Books\DataAccessLayer\bin\Debug\net8.0\DataAccessLayer.deps.json
+C:\Users\pca242\source\repos\Day5\Start\Books\DataAccessLayer\bin\Debug\net8.0\DataAccessLayer.dll
+C:\Users\pca242\source\repos\Day5\Start\Books\DataAccessLayer\bin\Debug\net8.0\DataAccessLayer.pdb
+C:\Users\pca242\source\repos\Day5\Start\Books\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pca242\source\repos\Day5\Start\Books\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.AssemblyInfoInputs.cache
+C:\Users\pca242\source\repos\Day5\Start\Books\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.AssemblyInfo.cs
+C:\Users\pca242\source\repos\Day5\Start\Books\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Users\pca242\source\repos\Day5\Start\Books\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.dll
+C:\Users\pca242\source\repos\Day5\Start\Books\DataAccessLayer\obj\Debug\net8.0\refint\DataAccessLayer.dll
+C:\Users\pca242\source\repos\Day5\Start\Books\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.pdb
+C:\Users\pca242\source\repos\Day5\Start\Books\DataAccessLayer\obj\Debug\net8.0\ref\DataAccessLayer.dll
+E:\Internship\Day5-20240524-NisargGami-Authentication&Authorization\Books\DataAccessLayer\bin\Debug\net8.0\DataAccessLayer.deps.json
+E:\Internship\Day5-20240524-NisargGami-Authentication&Authorization\Books\DataAccessLayer\bin\Debug\net8.0\DataAccessLayer.dll
+E:\Internship\Day5-20240524-NisargGami-Authentication&Authorization\Books\DataAccessLayer\bin\Debug\net8.0\DataAccessLayer.pdb
+E:\Internship\Day5-20240524-NisargGami-Authentication&Authorization\Books\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.GeneratedMSBuildEditorConfig.editorconfig
+E:\Internship\Day5-20240524-NisargGami-Authentication&Authorization\Books\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.AssemblyInfoInputs.cache
+E:\Internship\Day5-20240524-NisargGami-Authentication&Authorization\Books\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.AssemblyInfo.cs
+E:\Internship\Day5-20240524-NisargGami-Authentication&Authorization\Books\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.csproj.CoreCompileInputs.cache
+E:\Internship\Day5-20240524-NisargGami-Authentication&Authorization\Books\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.sourcelink.json
+E:\Internship\Day5-20240524-NisargGami-Authentication&Authorization\Books\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.dll
+E:\Internship\Day5-20240524-NisargGami-Authentication&Authorization\Books\DataAccessLayer\obj\Debug\net8.0\refint\DataAccessLayer.dll
+E:\Internship\Day5-20240524-NisargGami-Authentication&Authorization\Books\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.pdb
+E:\Internship\Day5-20240524-NisargGami-Authentication&Authorization\Books\DataAccessLayer\obj\Debug\net8.0\ref\DataAccessLayer.dll
+E:\Internship\Day 5  Authentication&Authorization\Books\DataAccessLayer\bin\Debug\net8.0\DataAccessLayer.deps.json
+E:\Internship\Day 5  Authentication&Authorization\Books\DataAccessLayer\bin\Debug\net8.0\DataAccessLayer.dll
+E:\Internship\Day 5  Authentication&Authorization\Books\DataAccessLayer\bin\Debug\net8.0\DataAccessLayer.pdb
+E:\Internship\Day 5  Authentication&Authorization\Books\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.GeneratedMSBuildEditorConfig.editorconfig
+E:\Internship\Day 5  Authentication&Authorization\Books\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.AssemblyInfoInputs.cache
+E:\Internship\Day 5  Authentication&Authorization\Books\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.AssemblyInfo.cs
+E:\Internship\Day 5  Authentication&Authorization\Books\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.csproj.CoreCompileInputs.cache
+E:\Internship\Day 5  Authentication&Authorization\Books\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.sourcelink.json
+E:\Internship\Day 5  Authentication&Authorization\Books\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.dll
+E:\Internship\Day 5  Authentication&Authorization\Books\DataAccessLayer\obj\Debug\net8.0\refint\DataAccessLayer.dll
+E:\Internship\Day 5  Authentication&Authorization\Books\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.pdb
+E:\Internship\Day 5  Authentication&Authorization\Books\DataAccessLayer\obj\Debug\net8.0\ref\DataAccessLayer.dll
+E:\Internship\Day 5  Authentication&Authorization\DataAccessLayer\bin\Debug\net8.0\DataAccessLayer.deps.json
+E:\Internship\Day 5  Authentication&Authorization\DataAccessLayer\bin\Debug\net8.0\DataAccessLayer.dll
+E:\Internship\Day 5  Authentication&Authorization\DataAccessLayer\bin\Debug\net8.0\DataAccessLayer.pdb
+E:\Internship\Day 5  Authentication&Authorization\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.GeneratedMSBuildEditorConfig.editorconfig
+E:\Internship\Day 5  Authentication&Authorization\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.AssemblyInfoInputs.cache
+E:\Internship\Day 5  Authentication&Authorization\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.AssemblyInfo.cs
+E:\Internship\Day 5  Authentication&Authorization\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.csproj.CoreCompileInputs.cache
+E:\Internship\Day 5  Authentication&Authorization\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.sourcelink.json
+E:\Internship\Day 5  Authentication&Authorization\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.dll
+E:\Internship\Day 5  Authentication&Authorization\DataAccessLayer\obj\Debug\net8.0\refint\DataAccessLayer.dll
+E:\Internship\Day 5  Authentication&Authorization\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.pdb
+E:\Internship\Day 5  Authentication&Authorization\DataAccessLayer\obj\Debug\net8.0\ref\DataAccessLayer.dll
