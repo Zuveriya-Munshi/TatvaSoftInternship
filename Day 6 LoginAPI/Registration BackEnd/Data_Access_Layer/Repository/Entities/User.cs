@@ -8,6 +8,11 @@ using System.Threading.Tasks;
 
 namespace Data_Access_Layer.Repository.Entities
 {
+    public class LoginRequest
+    {
+        public string EmailAddress { get; set; }
+        public string Password { get; set; }
+    }
     public class User : BaseEntity
     {
         [Key]

@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Text;
+using System.Collections.Generic;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,10 +17,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-builder.Services.AddDbContext<AppDbContext>(db => db.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"),
-    b => b.MigrationsAssembly("Data_Access_Layer"))); // Specify migrations assembly here
-
+builder.Services.AddDbContext<AppDbContext>(db => db.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(x =>
 {
     x.TokenValidationParameters = new TokenValidationParameters
@@ -54,7 +52,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseCors("MyPolicy");
 
@@ -64,3 +62,8 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+//INSERT INTO public."User"(
+//    "Id", "FirstName", "LastName", "PhoneNumber", "EmailAddress", "UserType", "Password", "CreatedDate", "ModifiedDate", "IsDeleted")
+//    VALUES(1, 'Nisarg', 'Gami', '9999999999', 'nisarg@tatvasoft.com', 'admin', 'nisarg@123', CURRENT_DATE, CURRENT_DATE, '0');
+

@@ -1,6 +1,7 @@
 ﻿using Data_Access_Layer;
 using Data_Access_Layer.JWTService;
 using Data_Access_Layer.Repository.Entities;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Business_logic_Layer
 {
@@ -15,12 +16,12 @@ namespace Business_logic_Layer
             _jwtService = jwtService;
         }
 
-        public ResponseResult LoginUser(User user)
+        public ResponseResult LoginUser(LoginRequest loginRequest)
         {
             try
             {
                 User userObj= new User();
-                userObj = UserLogin(user);
+                userObj = UserLogin(loginRequest);
 
                 if(userObj != null)
                 {
@@ -48,15 +49,15 @@ namespace Business_logic_Layer
             }
             return result;
         }
-        public User  UserLogin(User user)
+        public User  UserLogin(LoginRequest loginRequest)
         {
             User userOb = new User()
             {
-                EmailAddress = user.EmailAddress,
-                Password = user.Password
+                EmailAddress = loginRequest.EmailAddress,
+                Password = loginRequest.Password
             };
 
-            return _dalLogin.LoginUser(user);
+            return _dalLogin.LoginUser(userOb);
         }
     }
 }

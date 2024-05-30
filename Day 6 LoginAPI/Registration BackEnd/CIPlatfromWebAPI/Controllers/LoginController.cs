@@ -18,11 +18,11 @@ namespace Web_API.Controllers
 
         [HttpPost]
         [Route("LoginUser")]
-        public ResponseResult LoginUser(User user)
+        public ResponseResult LoginUser(LoginRequest loginRequest)
         {
             try
             {                                
-                result.Data = _balLogin.LoginUser(user);
+                result.Data = _balLogin.LoginUser(loginRequest);
                 result.Result = ResponseStatus.Success;
             }
             catch (Exception ex)
