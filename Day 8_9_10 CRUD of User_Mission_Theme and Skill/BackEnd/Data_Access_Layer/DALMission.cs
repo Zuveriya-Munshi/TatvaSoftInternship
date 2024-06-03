@@ -15,6 +15,7 @@ namespace Data_Access_Layer
         {
             _cIDbContext = cIDbContext;
         }
+        
         public List<DropDown> GetMissionThemeList()
         {
             return _cIDbContext.MissionTheme
@@ -29,12 +30,19 @@ namespace Data_Access_Layer
                 .ToList();
         }
 
-        public List<Missions> MissionList()
+        /*public List<Missions> MissionList()
         {
             return _cIDbContext.Missions
-                .ToList();
-        }
+               .Where(ms => ms.Id == id && !ms.IsDeleted)
+                                     .FirstOrDefaultAsync();
+        }*/
 
+        public async Task<List<Missions>> MissionListAsync()
+        {
+            return await _cIDbContext.Missions
+                                     .Where(ms => !ms.IsDeleted)
+                                     .ToListAsync();
+        }
         public string AddMission(Missions mission)
         {
             string result = "";
@@ -77,88 +85,72 @@ namespace Data_Access_Layer
                 .FirstOrDefault(m => m.Id == id);
         }
 
-        public string UpdateMission(Missions mission)
+       
+        public async Task<string>  UpdateMissionAsync(Missions mission)
         {
-            string result = "";
             try
             {
-                // Check if the mission with the same title, city, start date, and end date already exists
-                bool missionExists = _cIDbContext.Missions.Any(m => m.MissionTitle == mission.MissionTitle
-                                                                    && m.CityId == mission.CityId
-                                                                    && m.StartDate == mission.StartDate
-                                                                    && m.EndDate == mission.EndDate
-                                                                    && m.Id != mission.Id
-                                                                    && !m.IsDeleted);
 
-                if (!missionExists)
+                var existingMission = await _cIDbContext.Missions.FirstOrDefaultAsync(mt => mt.Id == mission.Id && !mt.IsDeleted);
+                if (existingMission != null)
                 {
-                    // Find the mission in the database to update
-                    var missionToUpdate = _cIDbContext.Missions.FirstOrDefault(m => m.Id == mission.Id && !m.IsDeleted);
+              
+                        existingMission.MissionTitle = mission.MissionTitle;
+                        existingMission.MissionDescription = mission.MissionDescription;
+                        existingMission.MissionOrganisationName = mission.MissionOrganisationName;
+                        existingMission.MissionOrganisationDetail = mission.MissionOrganisationDetail;
+                        existingMission.CountryId = mission.CountryId;
+                        existingMission.CityId = mission.CityId;
+                        existingMission.StartDate = mission.StartDate;
+                        existingMission.EndDate = mission.EndDate;
+                        existingMission.MissionType = mission.MissionType;
+                        existingMission.TotalSheets = mission.TotalSheets;
+                        existingMission.RegistrationDeadLine = mission.RegistrationDeadLine;
+                        existingMission.MissionThemeId = mission.MissionThemeId;
+                        existingMission.MissionSkillId = mission.MissionSkillId;
+                        existingMission.MissionImages = mission.MissionImages;
+                        existingMission.MissionDocuments = mission.MissionDocuments;
+                        existingMission.MissionAvilability = mission.MissionAvilability;
+                        existingMission.MissionVideoUrl = mission.MissionVideoUrl;
+                        existingMission.ModifiedDate = DateTime.Now;
 
-                    if (missionToUpdate != null)
-                    {
-                        // Update the mission details
-                        missionToUpdate.MissionTitle = mission.MissionTitle;
-                        missionToUpdate.MissionDescription = mission.MissionDescription;
-                        missionToUpdate.MissionOrganisationName = mission.MissionOrganisationName;
-                        missionToUpdate.MissionOrganisationDetail = mission.MissionOrganisationDetail;
-                        missionToUpdate.CountryId = mission.CountryId;
-                        missionToUpdate.CityId = mission.CityId;
-                        missionToUpdate.StartDate = mission.StartDate;
-                        missionToUpdate.EndDate = mission.EndDate;
-                        missionToUpdate.MissionType = mission.MissionType;
-                        missionToUpdate.TotalSheets = mission.TotalSheets;
-                        missionToUpdate.RegistrationDeadLine = mission.RegistrationDeadLine;
-                        missionToUpdate.MissionThemeId = mission.MissionThemeId;
-                        missionToUpdate.MissionSkillId = mission.MissionSkillId;
-                        missionToUpdate.MissionImages = mission.MissionImages;
-                        missionToUpdate.MissionDocuments = mission.MissionDocuments;
-                        missionToUpdate.MissionAvilability = mission.MissionAvilability;
-                        missionToUpdate.MissionVideoUrl = mission.MissionVideoUrl;
-                        missionToUpdate.ModifiedDate = DateTime.Now;
+                        _cIDbContext.SaveChangesAsync();
 
-                        _cIDbContext.SaveChanges();
-
-                        result = "Update Mission Detail Successfully.";
+                        return "Update Mission Detail Successfully.";
                     }
                     else
                     {
                         throw new Exception("Mission not found.");
                     }
                 }
-                else
-                {
-                    throw new Exception("Mission with the same title, city, start date, and end date already exists.");
-                }
-            }
-            catch (Exception)
+               
+            
+            catch (Exception ex)
             {
-                throw;
+                throw new Exception("Error in updating mission.", ex);
             }
-            return result;
         }
 
-        public string DeleteMission(int id)
+        
+        public async Task<string> DeleteMissionAsync(int id)
         {
             try
             {
-                string result = "";
-                var mission = _cIDbContext.Missions.FirstOrDefault(m => m.Id == id);
-                if (mission != null)
+                var existingMission = await _cIDbContext.Missions.FirstOrDefaultAsync(mt => mt.Id == id && !mt.IsDeleted);
+                if (existingMission != null)
                 {
-                    mission.IsDeleted = true;
-                    _cIDbContext.SaveChanges();
-                    result = "Delete Mission Detail Successfully.";
+                    existingMission.IsDeleted = true;
+                    await _cIDbContext.SaveChangesAsync();
+                    return "Delete Mission Details Successfully..";
                 }
                 else
                 {
-                    result = "Mission not found."; // Or any other appropriate message
+                    throw new Exception("Mission not found.");
                 }
-                return result;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw new Exception("Error in deleting mission details .", ex);
             }
         }
     }

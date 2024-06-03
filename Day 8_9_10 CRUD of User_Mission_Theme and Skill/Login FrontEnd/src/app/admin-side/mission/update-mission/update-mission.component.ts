@@ -62,7 +62,7 @@ export class UpdateMissionComponent implements OnInit {
 
   CountryList(){
     this.service.CountryList().subscribe((data:any)=>{
-      if(data.result == 1)
+      if(data.status == "Success")
       {
           this.countryList = data.data;
       }
@@ -75,7 +75,7 @@ export class UpdateMissionComponent implements OnInit {
     CityList(countryId:any){
       countryId = countryId.target.value;
       this.service.CityList(countryId).subscribe((data:any)=>{
-      if(data.result == 1)
+      if(data.status == "Success")
       {
           this.cityList = data.data;
       }
@@ -216,7 +216,7 @@ async OnSubmit(){debugger;
       value.missionImages = this.editData.missionImages;
     }
     this.service.UpdateMission(value).subscribe((data:any)=>{
-          if(data.result == 1)
+          if(data.status == "Success")
           {
             //this.toastr.success(data.data);
             this.toast.success({detail:"SUCCESS",summary:data.data,duration:3000});

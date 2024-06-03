@@ -18,9 +18,10 @@ namespace Business_logic_Layer
         {
             return _dalMission.GetMissionSkillList();
         }
-        public List<Missions> MissionList()
+       
+        public async Task<List<Missions>> MissionListAsync()
         {
-            return _dalMission.MissionList();
+            return await _dalMission.MissionListAsync();
         }
         public string AddMission(Missions  mission)
         {
@@ -30,13 +31,14 @@ namespace Business_logic_Layer
         {
             return _dalMission.MissionDetailById(id);
         }
-        public string UpdateMission(Missions mission)
+       
+        public async Task<string> UpdateMissionAsync(Missions mission)
         {
-            return _dalMission.UpdateMission(mission);
+            return await _dalMission.UpdateMissionAsync(mission);
         }
-        public string DeleteMission(int id)
+        public async Task<string> DeleteMissionAsync(int id)
         {
-            return _dalMission.DeleteMission(id);
+            return await _dalMission.DeleteMissionAsync(id);
         }
     }
 }

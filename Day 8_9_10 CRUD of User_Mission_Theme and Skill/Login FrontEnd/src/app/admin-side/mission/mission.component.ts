@@ -74,8 +74,7 @@ export class MissionComponent implements OnInit {
           //this.toastr.success(data.data);
           this.toast.success({detail:"SUCCESS",summary:data.data,duration:3000});
           setTimeout(() => {
-            this.deleteModal.hide();
-          window.location.reload();
+            this.router.navigate(['admin/mission']);
           }, 1000);
         }
         else

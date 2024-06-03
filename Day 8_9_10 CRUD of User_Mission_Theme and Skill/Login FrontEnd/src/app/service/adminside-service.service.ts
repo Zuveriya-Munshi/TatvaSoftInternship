@@ -86,6 +86,8 @@ export class AdminsideServiceService {
   UpdateMission(data: Mission) {
     return this.http.post(`${this.apiUrl}/Mission/UpdateMission`, data);
   }
+
+ 
   DeleteMission(data: any) {
     return this.http.delete(`${this.apiUrl}/Mission/DeleteMission/${data}`);
   }
