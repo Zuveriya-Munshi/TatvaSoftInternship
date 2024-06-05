@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(public fb:FormBuilder,private service:AdminloginService,private toastr:ToastrService,private router:Router,public toast:NgToastService) { }
   registerForm:FormGroup;
-  formValid: boolean = false;
+  formValid:boolean;
   ngOnInit(): void {
     this.createRegisterForm();
   }
@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.fb.group({
       firstName:[null,Validators.compose([Validators.required])],
       lastName:[null,Validators.compose([Validators.required])],
-      phoneNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+      phoneNumber:[null,Validators.compose([Validators.required,Validators.minLength(10),Validators.maxLength(10)])],
       emailAddress:[null,Validators.compose([Validators.required,Validators.email])],
       password:[null,Validators.compose([Validators.required,Validators.minLength(5),Validators.maxLength(10)])],
       confirmPassword:[null,Validators.compose([Validators.required])]
