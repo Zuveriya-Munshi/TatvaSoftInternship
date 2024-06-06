@@ -190,48 +190,91 @@ export class UpdateMissionComponent implements OnInit {
     }
   }
 
-async OnSubmit(){debugger;
-  this.formValid = true;
-  let value = this.editMissionForm.value;
-  let updateImageUrl = '';
-  var SkillLists = Array.isArray(value.missionSkillId) ? value.missionSkillId.join(",") : "";
-  value.missionSkillId = SkillLists;
-  console.log(this.editMissionForm)
-
-  if(this.editMissionForm.valid)
-  {
-    if(this.isFileUpload){
-      await this.service.UploadImage(this.formData).pipe().toPromise().then((res:any)=>{
-        if(res.success){
-          updateImageUrl = res.data;
+  async OnSubmit(){
+    this.formValid = true;
+    let value = this.editMissionForm.value;
+    let updateImageUrl = '';
+    var SkillLists = Array.isArray(value.missionSkillId) ? value.missionSkillId.join(",") : "";
+    value.missionSkillId = SkillLists;
+  
+    if(this.editMissionForm.valid) {
+      try {
+        if(this.isFileUpload) {
+          const res:any = await this.service.UploadImage(this.formData).toPromise();
+          if(res.success){
+            updateImageUrl = res.data;
+          } else {
+            this.toast.error({detail:"ERROR",summary:res.message,duration:3000});
+            return;
+          }
         }
-      },err=>this.toast.error({detail:"ERROR",summary:err.error.message}));
-    }
-    if(this.isFileUpload)
-    {
-      value.missionImages = updateImageUrl;
-    }
-    else
-    {
-      value.missionImages = this.editData.missionImages;
-    }
-    this.service.UpdateMission(value).subscribe((data:any)=>{
-          if(data.status == "Success")
-          {
-            //this.toastr.success(data.data);
+        if(this.isFileUpload) {
+          value.missionImages = updateImageUrl;
+        } else {
+          value.missionImages = this.editData.missionImages;
+        }
+        this.service.UpdateMission(value).subscribe((data:any) => {
+          if(data.status == "Success") {
             this.toast.success({detail:"SUCCESS",summary:data.data,duration:3000});
             setTimeout(() => {
               this.router.navigate(['admin/mission']);
             }, 1000);
+          } else {
+            this.toast.error({detail:"ERROR",summary:data.message,duration:3000});
           }
-          else
-          {
-            this.toastr.error(data.message);
-           // this.toast.error({detail:"ERROR",summary:data.message,duration:3000});
-          }
-    },err=>this.toast.error({detail:"ERROR",summary:err.message,duration:3000}));
+        }, err => {
+          this.toast.error({detail:"ERROR",summary:err.message,duration:3000});
+        });
+      } catch (error) {
+        this.toast.error({detail:"ERROR",summary:error.message,duration:3000});
+      }
+    } else {
+      this.toast.error({detail:"ERROR",summary:"Form is not valid. Please check the fields and try again.",duration:3000});
+    }
   }
-}
+  
+// async OnSubmit(){debugger;
+//   this.formValid = true;
+//   let value = this.editMissionForm.value;
+//   let updateImageUrl = '';
+//   var SkillLists = Array.isArray(value.missionSkillId) ? value.missionSkillId.join(",") : "";
+//   value.missionSkillId = SkillLists;
+//   console.log(this.editMissionForm)
+
+//   if(this.editMissionForm.valid)
+//   {
+//     if(this.isFileUpload){
+//       await this.service.UploadImage(this.formData).pipe().toPromise().then((res:any)=>{
+//         if(res.success){
+//           updateImageUrl = res.data;
+//         }
+//       },err=>this.toast.error({detail:"ERROR",summary:err.error.message}));
+//     }
+//     if(this.isFileUpload)
+//     {
+//       value.missionImages = updateImageUrl;
+//     }
+//     else
+//     {
+//       value.missionImages = this.editData.missionImages;
+//     }
+//     this.service.UpdateMission(value).subscribe((data:any)=>{
+//           if(data.status == "Success")
+//           {
+//             //this.toastr.success(data.data);
+//             this.toast.success({detail:"SUCCESS",summary:data.data,duration:3000});
+//             setTimeout(() => {
+//               this.router.navigate(['admin/mission']);
+//             }, 1000);
+//           }
+//           else
+//           {
+//             this.toastr.error(data.message);
+//            // this.toast.error({detail:"ERROR",summary:data.message,duration:3000});
+//           }
+//     },err=>this.toast.error({detail:"ERROR",summary:err.message,duration:3000}));
+//   }
+// }
   OnCancel()
   {
     this.router.navigateByUrl('admin/mission');
