@@ -55,21 +55,22 @@ namespace Web_API.Controllers
             }
             return result;
         }
-
         [HttpGet]
         [Route("MissionList")]
         [Authorize]
-        public async Task<ActionResult<ResponseResult>> MissionList()
+        public ResponseResult MissionList()
         {
             try
             {
-                var result = _balMission.MissionList();
-                return Ok(new ResponseResult { Data = result, Result = ResponseStatus.Success });
+                result.Data = _balMission.MissionList();
+                result.Result = ResponseStatus.Success;
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new ResponseResult { Result = ResponseStatus.Error, Message = ex.Message });
+                result.Result = ResponseStatus.Error;
+                result.Message = ex.Message;
             }
+            return result;
         }
 
         [HttpPost]
@@ -79,7 +80,7 @@ namespace Web_API.Controllers
         {
             try
             {
-
+                
                 result.Data = _balMission.AddMission(mission);
                 result.Result = ResponseStatus.Success;
             }
@@ -99,6 +100,24 @@ namespace Web_API.Controllers
             try
             {
                 result.Data = _balMission.MissionDetailById(id);
+                result.Result = ResponseStatus.Success; 
+            }
+            catch (Exception ex)
+            {
+                result.Result = ResponseStatus.Error;
+                result.Message = ex.Message;
+            }
+            return result;
+        }
+
+        [HttpPost]
+        [Route("UpdateMission")]
+        [Authorize]
+        public ResponseResult UpdateMission(Missions mission)
+        {
+            try
+            {
+                result.Data = _balMission.UpdateMission(mission);
                 result.Result = ResponseStatus.Success;
             }
             catch (Exception ex)
@@ -109,38 +128,24 @@ namespace Web_API.Controllers
             return result;
         }
 
-
-        [HttpPost]
-        [Route("UpdateMission")]
-        [Authorize]
-        public async Task<ActionResult<ResponseResult>> UpdateMission(Missions mission)
-        {
-            try
-            {
-                var result = await _balMission.UpdateMission(mission);
-                return Ok(new ResponseResult { Data = result, Result = ResponseStatus.Success });
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new ResponseResult { Result = ResponseStatus.Error, Message = ex.Message });
-            }
-        }
-
         [HttpDelete]
         [Route("DeleteMission/{id}")]
         [Authorize]
-        public async Task<ActionResult<ResponseResult>> DeleteMission(int id)
+        public ResponseResult DeleteMission(int id)
         {
             try
             {
-                var result =  _balMission.DeleteMission(id);
-                return Ok(new ResponseResult { Data = result, Result = ResponseStatus.Success });
+                result.Data = _balMission.DeleteMission(id);
+                result.Result = ResponseStatus.Success;
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new ResponseResult { Result = ResponseStatus.Error, Message = ex.Message });
+                result.Result = ResponseStatus.Error;
+                result.Message = ex.Message;
             }
+            return result;
         }
+
         [HttpPost]
         [Route("UploadImage")]
         public async Task<IActionResult> UploadImage([FromForm] UploadFile upload)
@@ -148,12 +153,12 @@ namespace Web_API.Controllers
             string filePath = "";
             string fullPath = "";
             var files = Request.Form.Files;
-            if (files != null && files.Count > 0)
+            if(files != null && files.Count > 0)
             {
                 foreach (var file in files)
                 {
                     string fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-                    filePath = Path.Combine("UploadMissionImage", upload.ModuleName);
+                    filePath = Path.Combine("UploadMissionImage",upload.ModuleName);
                     string fileRootPath = Path.Combine(_hostingEnvironment.WebRootPath, "UploadMissionImage", upload.ModuleName);
 
                     if (!Directory.Exists(fileRootPath))
@@ -166,13 +171,70 @@ namespace Web_API.Controllers
                     string fullFileName = name + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + extension;
                     fullPath = Path.Combine(filePath, fullFileName);
                     string fullRootPath = Path.Combine(fileRootPath, fullFileName);
-                    using (var stream = new FileStream(fullRootPath, FileMode.Create))
+                    using(var stream = new FileStream(fullRootPath,FileMode.Create))
                     {
                         await file.CopyToAsync(stream);
                     }
                 }
             }
             return Ok(new { success = true, Data = fullPath });
+        }
+
+        #endregion
+
+        #region MissionApplication
+
+        [HttpGet]
+        [Route("MissionApplicationList")]
+        [Authorize]
+        public ResponseResult MissionApplicationList()
+        {
+            try
+            {
+                result.Data = _balMission.MissionApplicationList();
+                result.Result = ResponseStatus.Success;
+            }
+            catch (Exception ex)
+            {
+                result.Result = ResponseStatus.Error;
+                result.Message = ex.Message;
+            }
+            return result;
+        }
+
+        [HttpPost]
+        [Route("MissionApplicationDelete")]
+        [Authorize]
+        public ResponseResult MissionApplicationDelete(MissionApplication missionApplication)
+        {
+            try
+            {
+                result.Data = _balMission.MissionApplicationDelete(missionApplication.Id);
+                result.Result = ResponseStatus.Success;
+            }
+            catch (Exception ex)
+            {
+                result.Result = ResponseStatus.Error;
+                result.Message = ex.Message;
+            }
+            return result;
+        }
+        [HttpPost]
+        [Route("MissionApplicationApprove")]
+        [Authorize]
+        public ResponseResult MissionApplicationApprove(MissionApplication missionApplication)
+        {
+            try
+            {
+                result.Data = _balMission.MissionApplicationApprove(missionApplication.Id);
+                result.Result = ResponseStatus.Success;
+            }
+            catch (Exception ex)
+            {
+                result.Result = ResponseStatus.Error;
+                result.Message = ex.Message;
+            }
+            return result;
         }
 
         #endregion

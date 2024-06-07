@@ -63,6 +63,7 @@ if (app.Environment.IsDevelopment())
 }
 
 //app.UseHttpsRedirection();
+app.UseStaticFiles();
 
 app.UseCors("MyPolicy");
 
@@ -74,7 +75,7 @@ app.MapControllers();
 app.Run();
 
 //INSERT INTO public."User"(
-// "Id", "FirstName", "LastName", "PhoneNumber", "EmailAddress", "UserType", "Password", "CreatedDate", "ModifiedDate", "IsDeleted")
+ // "Id", "FirstName", "LastName", "PhoneNumber", "EmailAddress", "UserType", "Password", "CreatedDate", "ModifiedDate", "IsDeleted")
 //    VALUES(1, 'Nisarg', 'Gami', '9999999999', 'nisarg@tatvasoft.com', 'admin', 'nisarg@123', CURRENT_DATE, CURRENT_DATE, '0');
 
 //INSERT INTO public."User"(
