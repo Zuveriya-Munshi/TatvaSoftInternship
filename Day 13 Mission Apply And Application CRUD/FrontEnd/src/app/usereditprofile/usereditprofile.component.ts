@@ -225,116 +225,111 @@ export class UsereditprofileComponent implements OnInit {
       userId:['']
     })
   }
-  FetchData(id:any)
-  {
-      this.service.GetUserProfileDetailById(id).subscribe((data:any)=>{
-            if(data.result == 1)
-            {
-              this.editData = data.data;
-              if(this.editData != undefined)
-              {
-                this.userProfileForm = this.fb.group({
-                  id:[this.editData.id],
-                  name:[this.editData.name,Validators.compose([Validators.required])],
-                  surname:[this.editData.surname,Validators.compose([Validators.required])],
-                  firstName:[this.editData.firstName,Validators.compose([Validators.required])],
-                  lastName:[this.editData.lastName,Validators.compose([Validators.required])],
-                  employeeId:[this.editData.employeeId],
-                  manager:[this.editData.manager],
-                  title:[this.editData.title],
-                  department:[this.editData.department],
-                  myProfile:[this.editData.myProfile,Validators.compose([Validators.required])],
-                  whyIVolunteer:[this.editData.whyIVolunteer],
-                  countryId:[this.editData.countryId,Validators.compose([Validators.required])],
-                  cityId:[this.editData.cityId,Validators.compose([Validators.required])],
-                  avilability:[this.editData.avilability],
-                  linkdInUrl:[this.editData.linkdInUrl],
-                  mySkills:[this.editData.mySkills.split(','),Validators.compose([Validators.required])],
-                  userImage:[''],
-                  userId:[this.editData.userId]
-                });
-                this.service.CityList(this.editData.countryId).subscribe((data:any)=>{
-                  this.cityList = data.data;
-                });
-                if(this.editData.userImage){
-                  this.userImage = this.service.imageUrl + '/' + this.editData.userImage
-                }
-              }
-              // else
-              // {
-              //   this.userProfileForm = this.fb.group({
-              //     name:[this.firstName,Validators.compose([Validators.required])],
-              //     surname:[this.lastName,Validators.compose([Validators.required])],
-              //     employeeId:[''],
-              //     manager:[''],
-              //     title:[''],
-              //     department:[''],
-              //     myProfile:[null,Validators.compose([Validators.required])],
-              //     whyIVolunteer:[''],
-              //     countryId:[null,Validators.compose([Validators.required])],
-              //     cityId:[null,Validators.compose([Validators.required])],
-              //     avilability:[''],
-              //     linkdInUrl:[''],
-              //     mySkills:['',Validators.compose([Validators.required])],
-              //     userImage:[null,Validators.compose([Validators.required])],
-              //     userId:['']
-              //   })
-              // }
-            }
-            else
-            {
-              this.toast.error({detail:"ERROR",summary:data.message,duration:3000});
-            }
+  FetchData(id: any) {
+    this.service.GetUserProfileDetailById(id).subscribe((data: any) => {
+      if (data.result == 1) {
+        this.editData = data.data;
+        if (this.editData != undefined) {
+          this.userProfileForm = this.fb.group({
+            id: [this.editData.id],
+            name: [this.editData.name, Validators.compose([Validators.required])],
+            surname: [this.editData.surname, Validators.compose([Validators.required])],
+            firstName: [this.editData.firstName, Validators.compose([Validators.required])],
+            lastName: [this.editData.lastName, Validators.compose([Validators.required])],
+            employeeId: [this.editData.employeeId],
+            manager: [this.editData.manager],
+            title: [this.editData.title],
+            department: [this.editData.department],
+            myProfile: [this.editData.myProfile, Validators.compose([Validators.required])],
+            whyIVolunteer: [this.editData.whyIVolunteer],
+            countryId: [this.editData.countryId, Validators.compose([Validators.required])],
+            cityId: [this.editData.cityId, Validators.compose([Validators.required])],
+            avilability: [this.editData.avilability],
+            linkdInUrl: [this.editData.linkdInUrl],
+            // Ensure mySkills is split into an array
+            mySkills: [this.getSkillsArray(this.editData.mySkills), Validators.compose([Validators.required])],
 
-      },err=>this.toast.error({detail:"ERROR",summary:err.message,duration:3000}));
+            // mySkills: [this.editData.mySkills ? this.editData.mySkills.split(',') : [], Validators.compose([Validators.required])],
+            userImage: [''],
+            userId: [this.editData.userId]
+          });
+          this.service.CityList(this.editData.countryId).subscribe((data: any) => {
+            this.cityList = data.data;
+          });
+          if (this.editData.userImage) {
+            this.userImage = this.service.imageUrl + '/' + this.editData.userImage;
+          }
+        }
+      } else {
+        this.toast.error({ detail: "ERROR", summary: data.message, duration: 3000 });
+      }
+    }, err => this.toast.error({ detail: "ERROR", summary: err.message, duration: 3000 }));
   }
-
-  async OnSubmit(){
-
+  getSkillsArray(skills: string): string[] {
+    return skills ? skills.split(',') : [];
+  }
+  
+  convertSkillsToString(skills: string[]): string {
+    return Array.isArray(skills) ? skills.join(',') : '';
+  }
+  
+  async OnSubmit() {
     let imageUrl = '';
     let formValue = this.userProfileForm.value;
     formValue.userId = this.userId;
-    if(this.userProfileForm.valid)
-    {
-      if(this.isFileUpload)
-      {
-        await this.service.UploadImage(this.formData).pipe().toPromise().then((res:any)=>{
-            if(res.success)
-            {
-              imageUrl = res.data[0];
+  
+    if (this.userProfileForm.valid) {
+      try {
+        // Upload image if necessary
+        if (this.isFileUpload) {
+          const res: any = await this.service.UploadImage(this.formData).toPromise();
+          if (res.success) {
+            imageUrl = res.data[0];
+          } else {
+            this.toast.error({ detail: "ERROR", summary: res.message, duration: 3000 });
+            return;
+          }
+        }
+  
+        // Set user image URL
+        formValue.userImage = this.isFileUpload ? imageUrl : this.editData.userImage;
+  
+        // Convert mySkills to a string
+        if (Array.isArray(formValue.mySkills)) {
+          formValue.mySkills = formValue.mySkills.join(",");
+        } else {
+          this.toast.error({ detail: "ERROR", summary: "mySkills is not an array", duration: 3000 });
+          return;
+        }
+  
+        // Set status
+        formValue.status = true;
+  
+        // Update user profile
+        this.service.LoginUserProfileUpdate(formValue).subscribe(
+          (res: any) => {
+            if (res.result === 1) {
+              this.toast.success({ detail: "SUCCESS", summary: res.data, duration: 3000 });
+              setTimeout(() => {
+                this.router.navigate(['home']);
+              }, 1000);
+            } else {
+              this.toast.error({ detail: "ERROR", summary: res.message, duration: 3000 });
             }
-        },err=>{this.toast.error({detail:"ERROR",summary:err.message,duration:3000})});
+          },
+          (err) => {
+            this.toast.error({ detail: "ERROR", summary: err.message, duration: 3000 });
+          }
+        );
+      } catch (error) {
+        this.toast.error({ detail: "ERROR", summary: error.message, duration: 3000 });
       }
-      if(this.isFileUpload)
-      {
-        formValue.userImage = imageUrl;
-      }
-      else{
-        formValue.userImage = this.editData.userImage;
-      }
-
-      var mySkillLists = formValue.mySkills.join(",");
-      formValue.mySkills = mySkillLists;
-      formValue.status = true;
-      this.service.LoginUserProfileUpdate(formValue).subscribe((res:any)=>{
-        if(res.result == 1)
-        {
-            this.toast.success({detail:"SUCCESS",summary:res.data,duration:3000});
-            setTimeout(() => {
-              this.router.navigate(['home']);
-            }, 1000);
-        }
-        else
-        {
-          this.toast.error({detail:"ERROR",summary:res.message,duration:3000});
-        }
-      },err=>{this.toast.error({detail:"ERROR",summary:err.message,duration:3000})});
-    }
-    else
-    {
+    } else {
       ValidateForm.ValidateAllFormFields(this.userProfileForm);
     }
   }
+  
+  
   contactUs:ContactUs = new ContactUs();
   changePass:ChangePassword = new ChangePassword();
 

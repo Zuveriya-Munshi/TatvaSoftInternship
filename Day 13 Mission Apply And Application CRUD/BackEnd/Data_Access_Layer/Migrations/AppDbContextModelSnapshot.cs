@@ -39,7 +39,7 @@ namespace Data_Access_Layer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("City", (string)null);
+                    b.ToTable("City");
                 });
 
             modelBuilder.Entity("Data_Access_Layer.Repository.Entities.Country", b =>
@@ -56,7 +56,23 @@ namespace Data_Access_Layer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Country", (string)null);
+                    b.ToTable("Country");
+                });
+
+            modelBuilder.Entity("Data_Access_Layer.Repository.Entities.ForgotPassword", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("RequestDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ForgotPasswords");
                 });
 
             modelBuilder.Entity("Data_Access_Layer.Repository.Entities.MissionApplication", b =>
@@ -82,7 +98,7 @@ namespace Data_Access_Layer.Migrations
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("Sheet")
+                    b.Property<int>("Seats")
                         .HasColumnType("integer");
 
                     b.Property<bool>("Status")
@@ -93,7 +109,7 @@ namespace Data_Access_Layer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MissionApplication", (string)null);
+                    b.ToTable("MissionApplication");
                 });
 
             modelBuilder.Entity("Data_Access_Layer.Repository.Entities.MissionSkill", b =>
@@ -123,7 +139,7 @@ namespace Data_Access_Layer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MissionSkill", (string)null);
+                    b.ToTable("MissionSkill");
                 });
 
             modelBuilder.Entity("Data_Access_Layer.Repository.Entities.MissionTheme", b =>
@@ -153,7 +169,7 @@ namespace Data_Access_Layer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MissionTheme", (string)null);
+                    b.ToTable("MissionTheme");
                 });
 
             modelBuilder.Entity("Data_Access_Layer.Repository.Entities.Missions", b =>
@@ -225,12 +241,12 @@ namespace Data_Access_Layer.Migrations
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("date");
 
-                    b.Property<int?>("TotalSheets")
+                    b.Property<int?>("TotalSeats")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Missions", (string)null);
+                    b.ToTable("Missions");
                 });
 
             modelBuilder.Entity("Data_Access_Layer.Repository.Entities.User", b =>
@@ -275,7 +291,7 @@ namespace Data_Access_Layer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("User", (string)null);
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("Data_Access_Layer.Repository.Entities.UserDetail", b =>
@@ -357,7 +373,7 @@ namespace Data_Access_Layer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserDetail", (string)null);
+                    b.ToTable("UserDetail");
                 });
 #pragma warning restore 612, 618
         }
