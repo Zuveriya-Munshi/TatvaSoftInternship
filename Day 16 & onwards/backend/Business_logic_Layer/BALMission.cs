@@ -5,7 +5,7 @@ namespace Business_logic_Layer
 {
     public class BALMission
     {
-        private readonly DALMission _dalMission;
+        private readonly DALMission _dalMission;     
         public BALMission(DALMission dalMission)
         {
             _dalMission = dalMission;
@@ -22,10 +22,10 @@ namespace Business_logic_Layer
         {
             return _dalMission.MissionList();
         }
-        public string AddMission(Missions mission)
+        public string AddMission(Missions  mission)
         {
             return _dalMission.AddMission(mission);
-        }
+        }       
         public Missions MissionDetailById(int id)
         {
             return _dalMission.MissionDetailById(id);
