@@ -2,6 +2,8 @@
 using Data_Access_Layer.Repository.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Data_Access_Layer.Common;
+
 
 namespace Business_logic_Layer
 {

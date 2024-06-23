@@ -1,14 +1,12 @@
 
 <div>
-<app-navbar></app-navbar>
-<app-searchin-sorting></app-searchin-sorting>
+  <app-navbar></app-navbar>
+  <app-searchin-sorting></app-searchin-sorting>
 </div>
 <div class="container" style="width:100%">
   <div class="sortingdata mt-5">
+
   </div>
-
-  <hr>
-
   <div class="row">
     <div class="col-sm-6">
         <p style="font-size: 20px;margin-left: 20px;">Explore <span><b>{{totalMission}} missions</b></span></p>
@@ -22,7 +20,6 @@
           <option value="Oldest">Oldest</option>
           <option value="Lowest">Lowest available seats</option>
           <option value="Highest">Highest available seats</option>
-          <!--<option value="My favourites">My favourites</option> -->
           <option value="Registration">Registration deadline</option>
         </select>
       </div>
@@ -66,7 +63,7 @@
             <div class="SeatDeadLine row">
                 <div class="col-sm-6">
                   <i class="fa fa-user-circle-o fa-2x"></i>&nbsp;
-                  <span style="font-size: 24px !important;">{{item.totalSeats}}</span> <br/><span style="margin-left:40px">Seats left</span>
+                  <span style="font-size: 24px !important;">{{item.totalSheets}}</span> <br/><span style="margin-left:40px">Seats left</span>
                 </div>
                 <div class="col-sm-6">
                   <i class="fa fa-clock-o fa-2x"></i>&nbsp;
@@ -78,7 +75,7 @@
           <div class="d-grid card-footer" style="display: flex;justify-content: center;">
           <button class="btn-login" type="submit" *ngIf="item.missionApplyStatus =='Apply'" (click)="CheckUserLoginOrNot(item.id)" [disabled]="item.missionStatus=='Closed'"><span class="Login">Apply &nbsp;<i style="margin-top: 5px !important;" class="fa fa-arrow-right"></i></span></button>
           <button class="btn-login" type="submit" *ngIf="item.missionApplyStatus === 'Applied' && item.missionApproveStatus !== 'Approved'" [disabled]="item.missionApplyStatus === 'Applied'"><span class="Login">Applied</span></button>
-          <button class="btn-login" type="submit" *ngIf="item.missionApproveStatus === 'Approved'" [disabled]="item.missionApproveStatus === 'Approved'"><span class="Login">Approved</span></button>
+          <button class="btn-login" type="submit" *ngIf="item.missionApproveStatus === 'Approved'" [disabled]="item.missionApproveStatus === 'Approved'"><span class="Login">Approve</span></button>
         </div>
            <p style="display: none;">{{item.countryId}}</p>
 
@@ -126,7 +123,7 @@
         <div class="row col-sm-12 mt-3">
           <div class="col-sm-2">
             <img src="assets/Img/Seats-left.png" alt="NoImage">&nbsp;
-            <span>{{item.totalSeats}}</span> <br/><span style="margin-left:35px">Seats left</span>
+            <span>{{item.totalSheets}}</span> <br/><span style="margin-left:35px">Seats left</span>
           </div>
           <div class="col-sm-2">
             <img src="assets/Img/calender.png" alt="NoImage">&nbsp;
@@ -144,7 +141,7 @@
             <!-- <button class="btnViewDetail btn-btn-outline" [disabled]="item.missionStatus=='Closed'" type="submit"><span class="ViewDetail">Apply <i style="margin-top: 5px !important;" class="fa fa-arrow-right"></i></span></button> -->
             <button class="btnViewDetail btn-btn-outline" type="submit" *ngIf="item.missionApplyStatus =='Apply'" (click)="CheckUserLoginOrNot(item.id)" [disabled]="item.missionStatus=='Closed'"><span class="ViewDetail">Apply &nbsp;<i style="margin-top: 5px !important;" class="fa fa-arrow-right"></i></span></button>
             <button class="btn-login" type="submit" *ngIf="item.missionApplyStatus ==='Applied'" [disabled]="item.missionApplyStatus=='Applied'"><span class="Login">Applied</span></button>
-            <button class="btn-login" type="submit" *ngIf="item.missionApproveStatus === 'Approved'" [disabled]="item.missionApproveStatus === 'Approved'"><span class="Login">Approved</span></button>
+            <button class="btn-login" type="submit" *ngIf="item.missionApproveStatus === 'Approved'" [disabled]="item.missionApproveStatus === 'Approved'"><span class="Login">Approve</span></button>
           </div>
         </div>
       </div>
@@ -191,7 +188,7 @@
             <label class="col-form-label" style="margin-left:3px">{{appliedDate}}</label>
            </div>
            <div class="form-group">
-            <label class="col-form-label"><b>seats :</b></label>
+            <label class="col-form-label"><b>Sheet :</b></label>
             <label class="col-form-label" style="margin-left:3px">1</label>
            </div>
         </div>
@@ -204,5 +201,4 @@
     </div>
   </div>
 </div>
-
 

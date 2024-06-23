@@ -1,5 +1,6 @@
 ﻿using Business_logic_Layer;
 using Data_Access_Layer;
+using Data_Access_Layer.Common;
 using Data_Access_Layer.Repository.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -80,7 +81,7 @@ namespace Web_API.Controllers
         {
             try
             {
-                
+
                 result.Data = _balMission.AddMission(mission);
                 result.Result = ResponseStatus.Success;
             }
@@ -100,7 +101,7 @@ namespace Web_API.Controllers
             try
             {
                 result.Data = _balMission.MissionDetailById(id);
-                result.Result = ResponseStatus.Success; 
+                result.Result = ResponseStatus.Success;
             }
             catch (Exception ex)
             {
@@ -153,12 +154,12 @@ namespace Web_API.Controllers
             string filePath = "";
             string fullPath = "";
             var files = Request.Form.Files;
-            if(files != null && files.Count > 0)
+            if (files != null && files.Count > 0)
             {
                 foreach (var file in files)
                 {
                     string fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-                    filePath = Path.Combine("UploadMissionImage",upload.ModuleName);
+                    filePath = Path.Combine("UploadMissionImage", upload.ModuleName);
                     string fileRootPath = Path.Combine(_hostingEnvironment.WebRootPath, "UploadMissionImage", upload.ModuleName);
 
                     if (!Directory.Exists(fileRootPath))
@@ -171,7 +172,7 @@ namespace Web_API.Controllers
                     string fullFileName = name + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + extension;
                     fullPath = Path.Combine(filePath, fullFileName);
                     string fullRootPath = Path.Combine(fileRootPath, fullFileName);
-                    using(var stream = new FileStream(fullRootPath,FileMode.Create))
+                    using (var stream = new FileStream(fullRootPath, FileMode.Create))
                     {
                         await file.CopyToAsync(stream);
                     }
@@ -179,11 +180,6 @@ namespace Web_API.Controllers
             }
             return Ok(new { success = true, Data = fullPath });
         }
-
-        #endregion
-
-        #region MissionApplication
-
         [HttpGet]
         [Route("MissionApplicationList")]
         [Authorize]
@@ -236,7 +232,6 @@ namespace Web_API.Controllers
             }
             return result;
         }
-
         #endregion
     }
 }

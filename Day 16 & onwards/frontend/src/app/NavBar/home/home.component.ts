@@ -18,7 +18,7 @@ declare var window:any;
 export class HomeComponent implements OnInit {
   searchText:any='';
   missionList:any[]=[];
-  userList:any[]=[];
+  userList:any[]=[];  
   page:number=1;
   missionPerPages :number = 9;
   listmissionPerPages:number = 5;
@@ -53,6 +53,7 @@ export class HomeComponent implements OnInit {
       data == null ? (this.loginUserId = loginUserDetail.userId) : (this.loginUserId = data.userId);
       data == null ? (this.loginUserName = loginUserDetail.fullName) : (this.loginUserName = data.fullName);
       data == null ? (this.loginemailAddress = loginUserDetail.emailAddress) : (this.loginemailAddress = data.emailAddress);
+      
     });
     this.AllMissionList();
     this.commonservice.searchList.subscribe((data:any)=>{
@@ -84,7 +85,7 @@ export class HomeComponent implements OnInit {
             cityName:x.cityName,
             startDate:x.startDate,
             endDate:x.endDate,
-            totalSeats:x.totalSeats,
+            totalSheets:x.totalSheets,
             registrationDeadLine:x.registrationDeadLine,
             missionThemeId:x.missionThemeId,
             missionSkillId:x.missionSkillId,
@@ -148,7 +149,7 @@ export class HomeComponent implements OnInit {
             cityName:x.cityName,
             startDate:x.startDate,
             endDate:x.endDate,
-            totalSeats:x.totalSeats,
+            totalSheets:x.totalSheets,
             registrationDeadLine:x.registrationDeadLine,
             missionThemeId:x.missionThemeId,
             missionSkillId:x.missionSkillId,
@@ -165,7 +166,9 @@ export class HomeComponent implements OnInit {
         this.totalMission = data.data.length;
       }
       else{
-        this.toast.error({detail:"ERROR",summary:data.message,duration:3000});
+        console.log(data.message);
+        
+        this.toast.error({detail:"ERROR",summary:data.message,duration:300000});
         // this.toastr.error(data.message);
       }
   });
@@ -216,14 +219,14 @@ export class HomeComponent implements OnInit {
       userId:this.loginUserId,
       appliedDate:moment().format("yyyy-MM-DDTHH:mm:ssZ"),
      status:false,
-      seats:1
+      sheet:1
     };
       this.service.ApplyMission(value).subscribe((data:any)=>{
           if(data.result == 1)
           {
             this.toast.success({detail:"SUCCESS",summary:data.data});
             setTimeout(() => {
-              this.missionData.totalSeats = this.missionData.totalSeats - 1;
+              this.missionData.totalSheets = this.missionData.totalSheets - 1;
             }, 1000);
             window.location.reload();
           }
